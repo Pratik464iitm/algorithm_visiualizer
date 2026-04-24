@@ -41,7 +41,7 @@ AlgoVisualizer/
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 ### 1. Install dependencies
 ```bash
@@ -77,7 +77,7 @@ Open **http://localhost:5173** in your browser.
 
 ---
 
-## 🧠 React Concepts Used
+##  React Concepts Used
 
 | Concept | Where |
 |---|---|
@@ -94,7 +94,7 @@ Open **http://localhost:5173** in your browser.
 
 ---
 
-## 🎨 Changing the Theme
+##  Changing the Theme
 
 Open `src/index.css` and edit `:root` variables:
 
@@ -110,7 +110,7 @@ Open `src/index.css` and edit `:root` variables:
 
 ---
 
-## 🔧 Adding a New Algorithm
+##  Adding a New Algorithm
 
 1. Create `src/algorithms/mySort.js` — export `getMySortSteps(array)`
 2. Add it to the `ALGORITHMS` map in `src/hooks/useVisualizer.js`
@@ -118,5 +118,3 @@ Open `src/index.css` and edit `:root` variables:
 4. Add info in `AlgoInfo.jsx` `INFO` object
 
 ---
-
-Made with ❤️ using React + Vite
