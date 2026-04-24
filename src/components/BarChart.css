@@ -1,0 +1,132 @@
+/* BarChart.css — The main visualization area with animated bars */
+
+/* ── Outer container ── */
+.bar-chart-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Corner label showing step count */
+.step-counter {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.step-counter span {
+  color: var(--neon);
+}
+
+/* ── The bar container ── */
+.bar-chart {
+  display: flex;
+  align-items: flex-end;   /* bars grow upward from the bottom */
+  justify-content: center;
+  gap: 3px;
+  height: 280px;
+  padding-bottom: 4px;
+}
+
+/* ── Individual bar ── */
+.bar {
+  flex: 1;
+  min-width: 4px;
+  max-width: 40px;
+  border-radius: 3px 3px 0 0;
+  position: relative;
+
+  /* Smooth height transitions create the animation effect */
+  transition: height 0.08s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+
+  /* Default: dim green */
+  background: var(--surface-2);
+  border-top: 2px solid var(--border-hi);
+}
+
+/* ── Bar color states ── */
+
+/* COMPARING — two bars being examined: amber */
+.bar.comparing {
+  background: linear-gradient(to top, #7a5200, var(--amber));
+  border-top-color: var(--amber);
+  box-shadow: 0 0 10px var(--amber-glow), 0 0 2px var(--amber);
+}
+
+/* SWAPPING — bars being exchanged: red */
+.bar.swapping {
+  background: linear-gradient(to top, #7a0020, var(--red));
+  border-top-color: var(--red);
+  box-shadow: 0 0 12px var(--red-glow), 0 0 3px var(--red);
+}
+
+/* SORTED — bars in their final position: neon blue */
+.bar.sorted {
+  background: linear-gradient(to top, #003350, var(--blue));
+  border-top-color: var(--blue);
+  box-shadow: 0 0 8px var(--blue-glow);
+}
+
+/* KEY — the element currently being inserted (insertion sort) */
+.bar.key {
+  background: linear-gradient(to top, #005a2e, var(--neon));
+  border-top-color: var(--neon);
+  box-shadow: 0 0 14px var(--neon-glow), 0 0 4px var(--neon);
+}
+
+/* ── Bar value label ── */
+.bar-label {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  /* Only show labels when bars are wide enough */
+  opacity: 0;
+}
+
+/* Show labels when array is small enough (handled in JSX via className) */
+.bar.show-label .bar-label {
+  opacity: 1;
+}
+
+/* ── Legend below bars ── */
+.legend {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.legend-dot.comparing { background: var(--amber); box-shadow: 0 0 6px var(--amber-glow); }
+.legend-dot.swapping  { background: var(--red);   box-shadow: 0 0 6px var(--red-glow); }
+.legend-dot.sorted    { background: var(--blue);  box-shadow: 0 0 6px var(--blue-glow); }
+.legend-dot.key       { background: var(--neon);  box-shadow: 0 0 6px var(--neon-glow); }
+.legend-dot.default   { background: var(--border-hi); }

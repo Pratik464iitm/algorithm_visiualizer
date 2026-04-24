@@ -1,0 +1,102 @@
+/* index.css — Global reset, fonts, and CSS custom properties */
+
+/* Retro terminal font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&family=Orbitron:wght@400;700;900&display=swap');
+
+/* ===========================
+   CSS RESET
+=========================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===========================
+   DESIGN TOKENS (CSS Variables)
+   Edit these to retheme the whole app!
+=========================== */
+:root {
+  /* Color palette — neon green on near-black terminal */
+  --bg:           #080c08;
+  --bg-2:         #0d120d;
+  --surface:      #111811;
+  --surface-2:    #182018;
+  --border:       #1f2e1f;
+  --border-hi:    #2a3e2a;
+
+  --neon:         #00ff88;       /* primary accent — bright green */
+  --neon-dim:     #00cc6a;       /* dimmer green */
+  --neon-glow:    rgba(0,255,136,0.18);
+  --neon-glow-sm: rgba(0,255,136,0.08);
+
+  --amber:        #ffb300;       /* comparing bars */
+  --amber-glow:   rgba(255,179,0,0.2);
+
+  --red:          #ff4560;       /* swapping bars */
+  --red-glow:     rgba(255,69,96,0.2);
+
+  --blue:         #00b4d8;       /* sorted bars */
+  --blue-glow:    rgba(0,180,216,0.15);
+
+  --text:         #c8e6c8;       /* main text */
+  --text-muted:   #4a6b4a;       /* secondary text */
+  --text-bright:  #e8ffe8;
+
+  /* Spacing & shape */
+  --radius:       6px;
+  --radius-lg:    12px;
+
+  /* Fonts */
+  --font-mono:    'JetBrains Mono', monospace;
+  --font-display: 'Orbitron', sans-serif;
+}
+
+/* ===========================
+   BASE STYLES
+=========================== */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-mono);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  /* Subtle scanline overlay for CRT feel */
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 136, 0.015) 2px,
+      rgba(0, 255, 136, 0.015) 4px
+    );
+}
+
+ul { list-style: none; }
+button, input, select { font-family: inherit; }
+img, svg { display: block; max-width: 100%; }
+
+/* ===========================
+   SCROLLBAR STYLING
+=========================== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--border-hi);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--neon-dim); }
+
+/* ===========================
+   UTILITY: NEON TEXT GLOW
+=========================== */
+.neon-text {
+  color: var(--neon);
+  text-shadow: 0 0 8px var(--neon-glow), 0 0 20px rgba(0,255,136,0.1);
+}
